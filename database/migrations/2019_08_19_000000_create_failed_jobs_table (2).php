@@ -13,13 +13,12 @@ return new class extends Migration
     {
         Schema::create('compra_producto', function (Blueprint $table) {
             $table->id();
+            $table->decimal('precio', 8, 2);
+            $table->integer('cantidad');
+            $table->decimal('subtotal', 8, 2);
             $table->unsignedBigInteger('compra_id');
             $table->unsignedBigInteger('producto_id');
-            $table->decimal('precio', 10, 2);
-            $table->integer('cantidad');
-            $table->decimal('subtotal', 10, 2);
             $table->timestamps();
-
             $table->foreign('compra_id')->references('id')->on('compras');
             $table->foreign('producto_id')->references('id')->on('productos');
         });
@@ -33,4 +32,3 @@ return new class extends Migration
         Schema::dropIfExists('compra_producto');
     }
 };
-
